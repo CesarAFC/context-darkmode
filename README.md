@@ -1,0 +1,1 @@
+# App to implement dark mode and different languages
