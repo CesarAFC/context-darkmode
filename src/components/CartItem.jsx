@@ -4,10 +4,10 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { useTheme } from '@mui/material';
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import ClearIcon from '@mui/icons-material/Clear';
 
-export default function BasicCard({data, addToCart}) {
-    let {id, name, price, description} = data;
+export function CartItem({data, deleteFromCart}) {
+    let {id, name, price, description, quantity} = data;
     const theme = useTheme();
   return (
     <Card sx={{ maxWidth: 275 }}>
@@ -16,14 +16,18 @@ export default function BasicCard({data, addToCart}) {
           {name}
         </Typography>
         <Typography sx={{ mb: 1.5 }} color="text.secondary">
-          ${price}.oo
+          ${price}.oo x {quantity}u = ${price*quantity}.oo 
         </Typography>
         <Typography variant="caption">{description}</Typography>
       </CardContent>
       <CardActions sx={{justifyContent: 'center'}}>
-        <Button size="small" onClick={() => addToCart(id)}>
-          Agregar 
-          <AddShoppingCartIcon sx={{fontSize: 'small' }}/>
+      <Button size="small" onClick={() => deleteFromCart(id)}>
+          Eliminar uno
+          <ClearIcon sx={{fontSize: 'small' }}/>
+        </Button>
+      <Button size="small" onClick={() => deleteFromCart(id,true)}>
+          Eliminar todos
+          <ClearIcon sx={{fontSize: 'small' }}/>
         </Button>
       </CardActions>
     </Card>
